@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main()
+{
+    char file[3][20]={"file1","file2","file3"};
+    int i;
+    printf("Files in Directory:\n");
+    for(i=0;i<3;i++)
+        printf("%s\n",file[i]);
+    return 0;
+}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+struct msgbuf
+{
+    long type;
+    char text[50];
+} message;
+int main()
+{
+    int msgid;
+    msgid = msgget(1234, 0666 | IPC_CREAT);
+    message.type = 1;
+    sprintf(message.text, "Hello");
+    msgsnd(msgid, &message, sizeof(message), 0);
+    msgrcv(msgid, &message, sizeof(message), 1, 0);
+    printf("Message: %s", message.text);
+    return 0;
+}
